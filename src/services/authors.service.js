@@ -10,12 +10,8 @@ class AuthorsAPI extends RESTDataSource {
     return this.get(`/${id}`)
   }
 
-  async retrieveMany (filter = {}) {
-    return this.get('/', {
-      params: {
-        ...filter
-      }
-    })
+  async retrieveMany (params = {}) {
+    return this.get('/', params)
   }
 }
 

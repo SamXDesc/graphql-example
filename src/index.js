@@ -1,5 +1,6 @@
 import { ApolloServer, gql } from 'apollo-server'
 import { GraphQLScalarType, Kind } from 'graphql'
+import depthLimit from 'graphql-depth-limit'
 import AuthorsAPI from './services/authors.service'
 import BooksAPI from './services/books.service'
 
@@ -93,7 +94,8 @@ const server = new ApolloServer({
       booksApi: new BooksAPI(),
       authorsApi: new AuthorsAPI()
     }
-  }
+  },
+  validationRules: [depthLimit(2)]
 })
 
 // The `listen` method launches a web server.
