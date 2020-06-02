@@ -3,6 +3,8 @@ import { GraphQLScalarType, Kind } from 'graphql'
 import depthLimit from 'graphql-depth-limit'
 import AuthorsAPI from './services/authors.service'
 import BooksAPI from './services/books.service'
+// import axios from './services/authors.axios'
+import axios from 'axios'
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
@@ -25,7 +27,12 @@ const resolvers = {
   }),
 
   Book: {
-    author: (book, _, { dataSources }) => dataSources.authorsApi.retrieveOne(book.author)
+    author: (book, _, { dataSources }) => dataSources.authorsApi.retrieveOne(book.author),
+    authorX: async book => {
+      const { data } = await axios.get(`http://localhost:3000/authors/${book.author}`)
+
+      return data
+    }
   },
 
   Author: {
@@ -62,6 +69,7 @@ const typeDefs = gql`
     _id: String
     title: String
     author: Author
+    authorX: Author
     description: String
     createdAt: Date
     categories: [Category]
