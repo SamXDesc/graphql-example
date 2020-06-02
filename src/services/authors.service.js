@@ -13,9 +13,9 @@ class AuthorsAPI extends RESTDataSource {
   }
 
   async retrieveOne (id) {
-    return this.get(`/${id}`)
+    // return this.get(`/${id}`)
 
-    // return this.loader.load(id)
+    return this.loader.load(id)
   }
 
   async retrieveMany (params = {}) {

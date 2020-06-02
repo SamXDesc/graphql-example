@@ -66,7 +66,7 @@ const typeDefs = gql`
   }
 
   type Book {
-    _id: String
+    _id: ID
     title: String
     author: Author
     authorX: Author
@@ -76,7 +76,7 @@ const typeDefs = gql`
   }
 
   type Author {
-    _id: String
+    _id: ID
     name: String
     lastname: String
     fullname: String
@@ -86,9 +86,9 @@ const typeDefs = gql`
 
   type Query {
     books: [Book]
-    book (id: String!): Book,
+    book (id: ID!): Book,
     authors: [Author],
-    author (id: String!): Author
+    author (id: ID!): Author
   }
 `
 
